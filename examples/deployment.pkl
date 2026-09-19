@@ -7,6 +7,6 @@ settings = new Jellyfin {
   configDirectory = "./data/config"
   cacheDirectory = "./data/cache"
   media = new {
-    new MediaMount { hostPath = "/srv/media"; containerPath = "/media" }
+    new Jellyfin.MediaMount { hostPath = "/srv/media"; containerPath = "/media" }
   }
 }
