@@ -1,0 +1,10 @@
+amends "../src/Compose.pkl"
+
+settings = new Jellyfin {
+  image = "jellyfin/jellyfin:10.11.11"
+  configDirectory = "./data/config"
+  cacheDirectory = "./data/cache"
+  media = new {
+    new MediaMount { hostPath = "/srv/media"; containerPath = "/media" }
+  }
+}

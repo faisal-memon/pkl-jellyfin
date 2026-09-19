@@ -1,0 +1,28 @@
+/// Render a Jellyfin deployment as Docker Compose.
+amends "pkl:Module"
+
+import "Jellyfin.pkl"
+
+settings: Jellyfin
+
+output {
+  value = new Dynamic {
+    services {
+      [settings.containerName] = new Dynamic {
+        image = settings.image
+        container_name = settings.containerName
+        restart = settings.restart
+        ports = settings.ports
+        volumes = new Listing {
+          "(settings.configDirectory):/config"
+          "(settings.cacheDirectory):/cache"
+          for (mount in settings.media) {
+            "(mount.hostPath):(mount.containerPath)(if (mount.readOnly) ":ro" else "")"
+          }
+        }
+        devices = if (settings.hardwareAcceleration != null) new Listing { settings.hardwareAcceleration.device } else null
+      }
+    }
+  }
+  renderer = new YamlRenderer {}
+}
