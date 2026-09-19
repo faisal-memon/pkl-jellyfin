@@ -3,7 +3,7 @@ module jellyfin.Compose
 
 import "Jellyfin.pkl"
 
-settings = new Jellyfin {}
+settings = new Jellyfin.Jellyfin {}
 
 output {
   value = new Dynamic {
