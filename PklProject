@@ -1,1 +1,12 @@
 amends "pkl:Project"
+
+package {
+  name = "pkl-jellyfin"
+  license = "MIT"
+  version = read?("env:PKL_PACKAGE_VERSION") ?? "0.1.0"
+  baseUri = "package://github.com/faisal-memon/pkl-jellyfin/releases/download/v\(version)/pkl-jellyfin"
+  packageZipUrl = "https://github.com/faisal-memon/pkl-jellyfin/releases/download/v\(version)/pkl-jellyfin@\(version).zip"
+  sourceCode = "https://github.com/faisal-memon/pkl-jellyfin"
+  sourceCodeUrlScheme = "\(sourceCode)/blob/v\(version)%{path}#L%{line}"
+  exclude { "out/**"; "dist/**"; "Makefile" }
+}
