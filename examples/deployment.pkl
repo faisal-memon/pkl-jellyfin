@@ -2,7 +2,7 @@ amends "../src/Compose.pkl"
 
 import "../src/Jellyfin.pkl"
 
-settings = new Jellyfin.Jellyfin {
+settings = new Jellyfin {
   image = "jellyfin/jellyfin:10.11.11"
   configDirectory = "./data/config"
   cacheDirectory = "./data/cache"
