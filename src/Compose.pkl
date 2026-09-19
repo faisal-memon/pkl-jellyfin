@@ -1,9 +1,9 @@
 /// Render a Jellyfin deployment as Docker Compose.
-amends "pkl:Module"
+module jellyfin.Compose
 
 import "Jellyfin.pkl"
 
-settings: Jellyfin
+settings = new Jellyfin {}
 
 output {
   value = new Dynamic {
@@ -14,10 +14,10 @@ output {
         restart = settings.restart
         ports = settings.ports
         volumes = new Listing {
-          "(settings.configDirectory):/config"
-          "(settings.cacheDirectory):/cache"
+          "\(settings.configDirectory):/config"
+          "\(settings.cacheDirectory):/cache"
           for (mount in settings.media) {
-            "(mount.hostPath):(mount.containerPath)(if (mount.readOnly) ":ro" else "")"
+            "\(mount.hostPath):\(mount.containerPath)" + (if (mount.readOnly) ":ro" else "")
           }
         }
         devices = if (settings.hardwareAcceleration != null) new Listing { settings.hardwareAcceleration.device } else null
