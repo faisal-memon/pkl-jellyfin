@@ -1,0 +1,38 @@
+/// Render Docker Compose settings as Docker Compose YAML.
+module jellyfin.ComposeRender
+
+import "../DockerCompose.pkl"
+
+config: DockerCompose = new DockerCompose {}
+
+output {
+  value = new Dynamic {
+    services {
+      [config.containerName] = new Dynamic {
+        image = config.jellyfin.image
+        container_name = config.containerName
+        restart = config.restart
+        ports = config.ports
+        networks = if (config.networks != null) (new Listing {
+          for (network in config.networks) { network.name }
+        }) else null
+        volumes = new Listing {
+          "\(config.hostConfigDirectory):/config"
+          "\(config.hostCacheDirectory):/cache"
+          for (mount in config.jellyfin.media) {
+            "\(mount.hostPath):\(mount.containerPath)" + (if (mount.readOnly) ":ro" else "")
+          }
+        }
+        devices = if (config.jellyfin.hardwareAcceleration != null) new Listing { config.jellyfin.hardwareAcceleration.device } else null
+      }
+    }
+    when (config.networks != null) {
+      networks {
+        for (network in config.networks) {
+          [network.name] = new Dynamic { ["external"] = network.`external` }
+        }
+      }
+    }
+  }
+  renderer = new YamlRenderer {}
+}

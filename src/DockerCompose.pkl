@@ -1,0 +1,42 @@
+/// Typed Docker Compose deployment settings for Jellyfin.
+module jellyfin.DockerCompose
+
+import "Jellyfin.pkl"
+
+/// Application settings passed to Jellyfin itself.
+jellyfin: Jellyfin = new Jellyfin {}
+
+/// Host directory containing Jellyfin configuration.
+hostConfigDirectory: String(!isEmpty) = "./data/config"
+
+/// Host directory containing Jellyfin cache.
+hostCacheDirectory: String(!isEmpty) = "./data/cache"
+
+/// Docker Compose deployment settings.
+containerName: String(!isEmpty) = "jellyfin"
+restart: String(!isEmpty) = "unless-stopped"
+ports: Listing<String> = new { "8096:8096/tcp"; "7359:7359/udp" }
+
+/// Optional host-side publishing settings for future single-port services.
+hostPublishing: HostPublishing? = null
+
+/// Optional Docker networks for the service.
+networks: Listing<Network>? = null
+
+/// Host-side port publishing settings.
+class HostPublishing {
+  /// Host address to bind.
+  hostIp: String(!isEmpty) = "0.0.0.0"
+
+  /// Host port to publish.
+  port: Int(isBetween(1, 65535)) = 8096
+}
+
+/// Docker network attachment settings.
+class Network {
+  /// Compose network name.
+  name: String(!isEmpty)
+
+  /// Whether Compose should use an already-existing network.
+  `external`: Boolean = false
+}

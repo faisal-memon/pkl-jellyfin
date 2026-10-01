@@ -2,11 +2,6 @@
 open module jellyfin.Jellyfin
 
 image: String = "jellyfin/jellyfin:latest"
-containerName: String = "jellyfin"
-restart: String = "unless-stopped"
-configDirectory: String(!isEmpty) = "./data/config"
-cacheDirectory: String(!isEmpty) = "./data/cache"
-ports: Listing<String> = new { "8096:8096/tcp"; "7359:7359/udp" }
 media: Listing<MediaMount> = new {}
 hardwareAcceleration: HardwareAcceleration? = null
 
