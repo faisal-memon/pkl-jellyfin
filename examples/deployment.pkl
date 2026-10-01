@@ -4,7 +4,8 @@ import "../src/Jellyfin.pkl"
 
 config {
   jellyfin = new Jellyfin {
-    image = "jellyfin/jellyfin:10.11.11"
+    imageRepository = "jellyfin/jellyfin"
+    imageVersion = "10.11.11"
     media = new {
       new Jellyfin.MediaMount { hostPath = "/srv/media"; containerPath = "/media" }
     }
