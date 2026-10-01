@@ -19,11 +19,11 @@ output {
         volumes = new Listing {
           "\(config.hostConfigDirectory):/config"
           "\(config.hostCacheDirectory):/cache"
-          for (mount in config.jellyfin.media) {
+          for (mount in config.media) {
             "\(mount.hostPath):\(mount.containerPath)" + (if (mount.readOnly) ":ro" else "")
           }
         }
-        devices = if (config.jellyfin.hardwareAcceleration != null) new Listing { config.jellyfin.hardwareAcceleration.device } else null
+        devices = if (config.hardwareAcceleration != null) new Listing { config.hardwareAcceleration.device } else null
       }
     }
     when (config.networks != null) {
