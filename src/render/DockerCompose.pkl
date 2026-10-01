@@ -19,7 +19,7 @@ output {
         volumes = new Listing {
           "\(config.hostConfigDirectory):/config"
           "\(config.hostCacheDirectory):/cache"
-          for (mount in config.media) {
+          for (mount in config.volumeMounts) {
             "\(mount.hostPath):\(mount.containerPath)" + (if (mount.readOnly) ":ro" else "")
           }
         }

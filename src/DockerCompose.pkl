@@ -28,8 +28,8 @@ hostPublishing: HostPublishing? = null
 /// Optional Docker networks for the service.
 networks: Listing<Network>? = null
 
-/// Host-to-container media bind mounts.
-media: Listing<MediaMount> = new {}
+/// Host-to-container volume mounts.
+volumeMounts: Listing<VolumeMount> = new {}
 
 /// Optional hardware device exposed to the container.
 hardwareAcceleration: HardwareAcceleration? = null
@@ -52,12 +52,12 @@ class Network {
   `external`: Boolean = false
 }
 
-/// A Docker media bind mount.
-class MediaMount {
-  /// Host path containing media.
+/// A Docker volume mount.
+class VolumeMount {
+  /// Host path or named volume source.
   hostPath: String(!isEmpty)
 
-  /// Container path where media is mounted.
+  /// Container path where the volume is mounted.
   containerPath: String(!isEmpty)
 
   /// Whether the container can write to the mount.
