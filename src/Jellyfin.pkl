@@ -1,11 +1,6 @@
 /// Typed Jellyfin deployment settings.
 open module jellyfin.Jellyfin
 
-/// Docker image repository.
-imageRepository: String(!isEmpty) = "jellyfin/jellyfin"
-
-/// Docker image tag or digest.
-imageVersion: String(!isEmpty) = "latest"
 media: Listing<MediaMount> = new {}
 hardwareAcceleration: HardwareAcceleration? = null
 

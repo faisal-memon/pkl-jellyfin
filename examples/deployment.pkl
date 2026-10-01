@@ -3,9 +3,9 @@ amends "../src/render/DockerCompose.pkl"
 import "../src/Jellyfin.pkl"
 
 config {
+  imageRepository = "jellyfin/jellyfin"
+  imageVersion = "10.11.11"
   jellyfin = new Jellyfin {
-    imageRepository = "jellyfin/jellyfin"
-    imageVersion = "10.11.11"
     media = new {
       new Jellyfin.MediaMount { hostPath = "/srv/media"; containerPath = "/media" }
     }

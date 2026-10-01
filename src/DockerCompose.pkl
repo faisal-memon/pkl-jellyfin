@@ -6,6 +6,12 @@ import "Jellyfin.pkl"
 /// Application settings passed to Jellyfin itself.
 jellyfin: Jellyfin = new Jellyfin {}
 
+/// Docker image repository.
+imageRepository: String(!isEmpty) = "jellyfin/jellyfin"
+
+/// Docker image tag or digest.
+imageVersion: String(!isEmpty) = "latest"
+
 /// Host directory containing Jellyfin configuration.
 hostConfigDirectory: String(!isEmpty) = "./data/config"
 

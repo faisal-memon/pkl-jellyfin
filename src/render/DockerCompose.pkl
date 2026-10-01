@@ -9,7 +9,7 @@ output {
   value = new Dynamic {
     services {
       [config.containerName] = new Dynamic {
-        image = "\(config.jellyfin.imageRepository):\(config.jellyfin.imageVersion)"
+        image = "\(config.imageRepository):\(config.imageVersion)"
         container_name = config.containerName
         restart = config.restart
         ports = config.ports
