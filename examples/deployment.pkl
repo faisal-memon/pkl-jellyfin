@@ -1,12 +1,13 @@
-amends "../src/Compose.pkl"
+amends "../src/render/DockerCompose.pkl"
 
-import "../src/Jellyfin.pkl"
+import "../src/DockerCompose.pkl"
 
-settings = new Jellyfin {
-  image = "jellyfin/jellyfin:10.11.11"
-  configDirectory = "./data/config"
-  cacheDirectory = "./data/cache"
-  media = new {
-    new Jellyfin.MediaMount { hostPath = "/srv/media"; containerPath = "/media" }
+config {
+  imageRepository = "jellyfin/jellyfin"
+  imageVersion = "10.11.11"
+  hostConfigDirectory = "./data/config"
+  hostCacheDirectory = "./data/cache"
+  volumeMounts = new {
+    new DockerCompose.VolumeMount { hostPath = "/srv/media"; containerPath = "/media" }
   }
 }
