@@ -12,9 +12,13 @@ hostConfigDirectory: String(!isEmpty) = "./data/config"
 /// Host directory containing Jellyfin cache.
 hostCacheDirectory: String(!isEmpty) = "./data/cache"
 
-/// Docker Compose deployment settings.
+/// Name assigned to the Jellyfin container.
 containerName: String(!isEmpty) = "jellyfin"
+
+/// Container restart policy.
 restart: String(!isEmpty) = "unless-stopped"
+
+/// Host ports published by Docker Compose.
 ports: Listing<String> = new { "8096:8096/tcp"; "7359:7359/udp" }
 
 /// Optional host-side publishing settings for future single-port services.
