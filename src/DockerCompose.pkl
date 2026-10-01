@@ -5,7 +5,7 @@ module jellyfin.DockerCompose
 imageRepository: String(!isEmpty) = "jellyfin/jellyfin"
 
 /// Docker image tag or digest.
-imageVersion: String(!isEmpty) = "latest"
+imageVersion: String(!isEmpty) = "12.1"
 
 /// Host directory containing Jellyfin configuration.
 hostConfigDirectory: String(!isEmpty) = "./data/config"
