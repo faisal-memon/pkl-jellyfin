@@ -1,11 +1,12 @@
 {
+  "$schema": "https://docs.renovatebot.com/renovate-schema.json",
   "extends": ["config:recommended"],
   "customManagers": [
     {
       "customType": "regex",
       "managerFilePatterns": ["/^src\\/DockerCompose\\.pkl$/"],
       "matchStrings": [
-        "imageRepository: String\\(!isEmpty\\) = \\\"(?<depName>[^\\\"]+)\\\"\\s+/// Docker image tag or digest\\.\\s+imageVersion: String\\(!isEmpty\\) = \\\"(?<currentValue>[^\\\"]+)\\\""
+        "imageRepository: String\\(!isEmpty\\) = \"(?<depName>[^\"]+)\"\\s+/// Docker image tag or digest\\.\\s+imageVersion: String\\(!isEmpty\\) = \"(?<currentValue>[^\"]+)\""
       ],
       "datasourceTemplate": "docker"
     }
