@@ -1,13 +1,6 @@
-amends "../src/render/DockerCompose.pkl"
-
-import "../src/DockerCompose.pkl"
-
-config {
-  imageRepository = "jellyfin/jellyfin"
-  imageVersion = "10.11.11"
-  hostConfigDirectory = "./data/config"
-  hostCacheDirectory = "./data/cache"
-  volumeMounts = new {
-    new DockerCompose.VolumeMount { hostPath = "/srv/media"; containerPath = "/media" }
-  }
+/// Example Jellyfin deployment.
+amends "../src/DockerCompose.pkl"
+config = new Config {
+  jellyfin { imageVersion = "10.11.11" }
+  docker { volumeMounts { new VolumeMount { hostPath = "/srv/media"; containerPath = "/media" } } }
 }
