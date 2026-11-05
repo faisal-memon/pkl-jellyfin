@@ -8,7 +8,7 @@ class Config {
 }
 class JellyfinConfig {
   imageRepository: String(!isEmpty) = "jellyfin/jellyfin"
-  imageVersion: String(!isEmpty) = "10.11.11"
+  imageVersion: String(!isEmpty) = "12.1"
   containerName: String(!isEmpty) = "jellyfin"
   restart: String(!isEmpty) = "unless-stopped"
 }
